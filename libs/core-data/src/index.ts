@@ -7,4 +7,5 @@ export { Customer } from './lib/customers/customer.model';
 export { Project } from './lib/projects/project.model';
 export { ProjectsService } from './lib/projects/projects.service';
 export { CustomersFacade } from './lib/state/customers/customers.facade';
-export { ProjectsState } from './lib/state/projects/projects.reducer';
+export { ProjectsState, initialProjects } from './lib/state/projects/projects.reducer';
+export { SelectProject, LoadProjects, AddProject, UpdateProject, DeleteProject } from './lib/state/projects/projects.actions';

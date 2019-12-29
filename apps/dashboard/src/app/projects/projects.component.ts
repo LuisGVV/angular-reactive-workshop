@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Customer, Project, ProjectsService, NotificationsService, CustomersService, ProjectsState } from '@workshop/core-data';
+import { Customer, Project, ProjectsService, NotificationsService, CustomersService, ProjectsState, AddProject, LoadProjects, UpdateProject, DeleteProject, initialProjects } from '@workshop/core-data';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import { initialState } from 'libs/core-data/src/lib/state/customers/customers.reducer';
 
 const emptyProject: Project = {
   id: null,
@@ -30,7 +31,8 @@ export class ProjectsComponent implements OnInit {
     private ns: NotificationsService) {
     this.projects$ = store.pipe(
       select('projects'),
-      map((projectsState: ProjectsState) => projectsState.projects)
+      map( data => data.entities),
+      map(data => Object.keys(data).map(k => data[k]))
     )
   }
 
@@ -57,7 +59,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    // this.projects$ = this.projectsService.all();
+    this.store.dispatch(new LoadProjects(initialProjects));
   }
 
   saveProject(project) {
@@ -69,21 +71,21 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject(project) {
-    this.store.dispatch({ type: 'create', payload: project });
+    this.store.dispatch(new AddProject(project));
     // these will go away
     this.ns.emit('Project created!');
     this.resetCurrentProject();
   }
 
   updateProject(project) {
-    this.store.dispatch({ type: 'update', payload: project });
+    this.store.dispatch(new UpdateProject(project));
     // these will go away
     this.ns.emit('Project saved!');
     this.resetCurrentProject();
   }
 
   deleteProject(project) {
-    this.store.dispatch({ type: 'delete', payload: project });
+    this.store.dispatch(new DeleteProject(project));
     // these will go away
     this.ns.emit('Project deleted!');
     this.resetCurrentProject();
