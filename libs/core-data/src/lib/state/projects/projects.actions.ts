@@ -4,39 +4,53 @@ import { Project } from "../../projects/project.model";
 export enum ProjectsActionsTypes {
     ProjectSelected = '[Projects] Selected',
     LoadProjects = '[Projects] Load Data',
+    ProjectsLoaded = '[Projects] Data Loaded',
     AddProject = '[Projects] Add Data',
+    ProjectAdded = '[Projects] Project Added',
     UpdateProject = '[Projects] Update Data',
+    ProjectUpdated = '[Projects] Project Updated',
     DeleteProject = '[Projects] Delete Data',
 }
 
 export class SelectProject implements Action {
     readonly type = ProjectsActionsTypes.ProjectSelected;
-    constructor(private payload: Project) {}
+    constructor(public payload: Project) {}
 }
 
 export class LoadProjects implements Action {
     readonly type = ProjectsActionsTypes.LoadProjects;
-    constructor(private payload: Project[]) {}
+}
+
+export class ProjectsLoaded implements Action {
+    readonly type = ProjectsActionsTypes.ProjectsLoaded;
+    constructor(public payload: Project[]) {}
 }
 
 export class AddProject implements Action {
     readonly type = ProjectsActionsTypes.AddProject;
-    constructor(private payload: Project) {}
+    constructor(public payload: Project) {}
+}
+
+export class ProjectAdded implements Action {
+    readonly type = ProjectsActionsTypes.ProjectAdded;
+    constructor(public payload: Project) {}
 }
 
 export class UpdateProject implements Action {
     readonly type = ProjectsActionsTypes.UpdateProject;
-    constructor(private payload: Project) {}
+    constructor(public payload: Project) {}
 }
 
 export class DeleteProject implements Action {
     readonly type = ProjectsActionsTypes.DeleteProject;
-    constructor(private payload: Project) {}
+    constructor(public payload: Project) {}
 }
 
 export type ProjectsActions = SelectProject
     | LoadProjects
+    | ProjectsLoaded
     | AddProject
+    | ProjectAdded
     | UpdateProject
     | DeleteProject
     ;
