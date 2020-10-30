@@ -6,7 +6,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-list [@listAnimation]="prepareListState()" [@.disabled]="animationsDisabled">
-        <mat-list-item *ngFor="let project of projects; trackBy: trackProject" (click)="selected.emit(project)" class="record">
+        <mat-list-item *ngFor="let project of projects; trackBy: trackProject" (click)="selectProject(project)" class="record">
           <h3 mat-line>{{project.title}}</h3>
           <p mat-line>
             {{project.details}}

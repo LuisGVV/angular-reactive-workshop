@@ -71,7 +71,6 @@ export class ProjectsComponent implements OnInit {
   updateProject(project) {
     this.projectsFacade.updateProject(project);
     // these will go away
-    this.ns.emit('Project saved!');
     this.resetCurrentProject();
   }
 

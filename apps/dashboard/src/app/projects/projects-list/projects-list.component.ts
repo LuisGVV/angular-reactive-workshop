@@ -27,6 +27,10 @@ export class ProjectsListComponent implements OnInit {
     }, 500)
   }
 
+  selectProject(project) {
+    this.selected.emit(project)
+  }
+
   prepareListState() {
     return this.projects ? this.projects.length : 'pending';
   }

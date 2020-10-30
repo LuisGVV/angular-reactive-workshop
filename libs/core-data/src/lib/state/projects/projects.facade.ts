@@ -26,8 +26,8 @@ export class ProjectsFacade {
         this.store.dispatch(new LoadProjects());
     }
 
-    selectProject(project) {
-        this.store.dispatch(new SelectProject(project.id));
+    selectProject(projectId) {
+        this.store.dispatch(new SelectProject(projectId));
       }
 
     createProject(project) {
